@@ -1,0 +1,924 @@
+<title>Tevin Barnes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
+<style>
+:root {
+  --bg-light: #d9dedd;
+  --bg-slate: #6a7c89;
+  --bg-dark: #2f3a49;
+  --bg-navy: #192432;
+  --text-dark: #111111;
+  --text-muted: #6a7c89;
+  --text-light: #e2e5e8;
+  --text-label: #8a9baa;
+  --accent: #4a8db7;
+  --serif: 'Cormorant Garamond', 'Georgia', serif;
+  --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  color: var(--text-dark);
+  background: var(--bg-light);
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ——— NAV ——— */
+.nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 100;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 48px);
+  height: 52px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-label);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+
+/* ——— HERO ——— */
+.hero {
+  background: var(--bg-light);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px clamp(16px, 4vw, 48px) 40px;
+}
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  max-width: 900px;
+  width: 100%;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 8vw, 5.5rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hero-divider {
+  width: 1px;
+  background: var(--text-muted);
+  align-self: stretch;
+  min-height: 200px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.hero-info { display: flex; flex-direction: column; gap: 12px; }
+.hero-role {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--bg-dark);
+  letter-spacing: 0.04em;
+  text-wrap: balance;
+}
+.hero-name {
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.hero-year {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.hero-subtitle {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--bg-dark);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ——— SECTIONS ——— */
+.section {
+  padding: clamp(60px, 10vw, 100px) clamp(16px, 4vw, 48px);
+}
+.section-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.section-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ——— FEATURED WORKS ——— */
+.featured {
+  background: var(--bg-slate);
+  color: var(--text-light);
+}
+.featured .section-header { color: var(--bg-light); }
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.work-card { display: flex; flex-direction: column; }
+.work-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.work-img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: var(--bg-dark);
+  position: relative;
+}
+.work-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.work-card:hover .work-img img { transform: scale(1.03); }
+.work-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+  text-wrap: balance;
+}
+.work-skill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.work-desc {
+  font-size: 0.88rem;
+  color: var(--text-label);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.btn-view {
+  display: inline-block;
+  background: var(--bg-navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-view:hover { background: #0e1a26; transform: translateY(-1px); }
+
+/* ——— SEMANTIC MODELS ——— */
+.models {
+  background: var(--bg-navy);
+  color: var(--text-light);
+}
+.models .section-header { color: var(--text-label); }
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+.model-card { text-align: left; }
+.model-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.model-placeholder {
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.model-placeholder svg { opacity: 0.35; }
+.model-placeholder span {
+  font-size: 0.7rem;
+  color: var(--text-label);
+  letter-spacing: 0.06em;
+}
+.model-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.model-sub {
+  font-size: 0.82rem;
+  color: var(--text-label);
+}
+
+/* ——— DATA TRANSFORMATION ——— */
+.transform {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  position: relative;
+  overflow: hidden;
+}
+.transform .section-header { color: var(--text-muted); }
+.landscape-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.landscape-panel {
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.landscape-panel svg { display: block; width: 100%; height: auto; }
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120px); }
+}
+@keyframes drift-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-80px); }
+}
+.cloud-a { animation: drift 28s linear infinite alternate; }
+.cloud-b { animation: drift-slow 35s linear infinite alternate; }
+.cloud-c { animation: drift 22s linear infinite alternate-reverse; }
+
+/* ——— USER STORIES ——— */
+.stories {
+  background: var(--bg-slate);
+  color: var(--text-light);
+}
+.stories .section-header { color: var(--bg-light); }
+.stories-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.stories-quote {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+}
+.stories-quote strong { font-weight: 700; }
+.stories-table-wrap { overflow-x: auto; }
+.stories-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.stories-table thead { background: rgba(255,255,255,0.1); }
+.stories-table th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--bg-light);
+  white-space: nowrap;
+}
+.stories-table td {
+  padding: 12px 14px;
+  color: var(--text-label);
+  line-height: 1.5;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  vertical-align: top;
+}
+.stories-table td:first-child {
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ——— ABOUT ——— */
+.about {
+  background: var(--bg-navy);
+  color: var(--text-light);
+}
+.about .section-header { color: var(--text-label); }
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-left { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+.headshot-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-slate));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.headshot-placeholder span {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--text-label);
+}
+.about-philosophy {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #fff;
+}
+.about-philosophy strong { font-weight: 700; }
+.about-right { display: flex; flex-direction: column; gap: 28px; }
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #1a2332, #0f1923);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.video-mock {
+  display: flex;
+  gap: 12px;
+  width: 80%;
+  max-width: 440px;
+}
+.video-mock-panel {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  color: var(--text-label);
+  line-height: 1.7;
+}
+.video-mock-panel .kw { color: #569cd6; }
+.video-mock-panel .fn { color: #dcdcaa; }
+.video-mock-panel .str { color: #ce9178; }
+.play-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  backdrop-filter: blur(4px);
+}
+.play-btn svg { margin-left: 3px; }
+.tool-labels {
+  display: flex;
+  gap: 20px;
+}
+.tool-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-label);
+  padding: 6px 0;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.about-bio {
+  font-size: 0.92rem;
+  color: var(--text-label);
+  line-height: 1.7;
+  max-width: 480px;
+  font-style: italic;
+}
+
+/* ——— CONTACT ——— */
+.contact {
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+}
+.contact-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--bg-dark);
+  margin-bottom: 36px;
+  line-height: 1.15;
+}
+.contact-item { margin-bottom: 20px; }
+.contact-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.contact-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bg-dark);
+}
+.contact-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #c8ccce 0%, #a8b0b4 50%, #8a9298 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.contact-img-placeholder {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+/* ——— FOOTER ——— */
+.footer {
+  background: var(--bg-dark);
+  color: var(--text-label);
+  text-align: center;
+  padding: 28px clamp(16px, 4vw, 48px);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+}
+
+/* ——— RESPONSIVE ——— */
+@media (max-width: 900px) {
+  .hero-inner { flex-direction: column; text-align: center; gap: 32px; }
+  .hero-divider { width: 60px; height: 1px; min-height: 0; }
+  .hero-info { align-items: center; }
+  .works-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .models-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .stories-layout { grid-template-columns: 1fr; }
+  .about-layout { grid-template-columns: 1fr; gap: 40px; }
+  .about-left { align-items: center; text-align: center; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-image { max-width: 400px; }
+}
+@media (max-width: 600px) {
+  .works-grid, .models-grid { max-width: 100%; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 0.72rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-a, .cloud-b, .cloud-c { animation: none; }
+  .work-img img { transition: none; }
+}
+</style>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">t<span>.</span>b</a>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-title">portfolio.</div>
+    <div class="hero-divider"></div>
+    <div class="hero-info">
+      <div class="hero-role">Business Data Analyst</div>
+      <div class="hero-name">Tevin Barnes</div>
+      <div class="hero-year">2019–Present</div>
+      <div class="hero-subtitle">Designer &amp; Developer</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORKS -->
+<section class="section featured" id="projects">
+  <div class="section-content">
+    <div class="section-header">Featured Works</div>
+    <div class="works-grid">
+
+      <div class="work-card">
+        <div class="work-num">01</div>
+        <div class="work-img">
+          <img src="img/dashboard-budget.png" alt="Blue Ridge Budget Completion Analysis dashboard showing KPIs, quarterly comparison charts, and regional breakdown">
+        </div>
+        <div class="work-title">Budget Completion Analysis</div>
+        <div class="work-skill">SQL Server · Window Functions · DAX</div>
+        <div class="work-desc">Tracking caravan budget submissions across six regions with ROW_NUMBER() ranking, dynamic year logic, and 50+ DAX measures for completion rates and pipeline status.</div>
+        <a href="#" class="btn-view">View Report</a>
+      </div>
+
+      <div class="work-card">
+        <div class="work-num">02</div>
+        <div class="work-img">
+          <img src="img/dashboard-timeliness.png" alt="Poseidon Energy Payment Timeliness dashboard showing completion ratios, market breakdowns, and priority charts">
+        </div>
+        <div class="work-title">Payment Timeliness Pipeline</div>
+        <div class="work-skill">Power Query ETL · Column Profiling · Scoring</div>
+        <div class="work-desc">Power Query pipeline monitoring on-time vs. late financials across power plants. Complexity-adjusted productivity metrics with 60+ DAX measures and heatmap visualization.</div>
+        <a href="#" class="btn-view">View Report</a>
+      </div>
+
+      <div class="work-card">
+        <div class="work-num">03</div>
+        <div class="work-img">
+          <img src="img/dashboard-ambassador.png" alt="Sunset Sarsaparilla Ambassador Onboarding tracker showing status counts, email timelines, and regional breakdowns">
+        </div>
+        <div class="work-title">Ambassador Onboarding</div>
+        <div class="work-skill">Multi-Source · Purview Logs · Email Matching</div>
+        <div class="work-desc">Cross-platform integration stitching WorkZone, Microsoft Purview audit logs, and SQL Server through email address matching to track new ambassador completions.</div>
+        <a href="#" class="btn-view">View Report</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEMANTIC MODELS -->
+<section class="section models">
+  <div class="section-content">
+    <div class="section-header">Semantic Models</div>
+    <div class="models-grid">
+
+      <div class="model-card">
+        <div class="model-img">
+          <div class="model-placeholder">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="4" y="4" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="38" y="4" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="4" y="44" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="38" y="44" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <line x1="26" y1="12" x2="38" y2="12" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="15" y1="20" x2="15" y2="44" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="49" y1="20" x2="49" y2="44" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="26" y1="52" x2="38" y2="52" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+            <span>Replace with data model screenshot</span>
+          </div>
+        </div>
+        <div class="model-name">Blue Ridge Caravan Co.</div>
+        <div class="model-sub">6 tables · Star schema with ranked subqueries</div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-img">
+          <div class="model-placeholder">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="4" y="4" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="38" y="4" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="21" y="24" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="4" y="44" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="38" y="44" width="22" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <line x1="15" y1="20" x2="32" y2="24" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="49" y1="20" x2="32" y2="24" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="32" y1="40" x2="15" y2="44" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="32" y1="40" x2="49" y2="44" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+            <span>Replace with data model screenshot</span>
+          </div>
+        </div>
+        <div class="model-name">Poseidon Energy</div>
+        <div class="model-sub">15 tables · Append queries with flattened views</div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-img">
+          <div class="model-placeholder">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="4" y="24" width="16" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="24" y="4" width="16" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="24" y="44" width="16" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <rect x="44" y="24" width="16" height="16" rx="2" stroke="#8a9baa" stroke-width="1.5"/>
+              <line x1="20" y1="32" x2="44" y2="32" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="32" y1="20" x2="32" y2="44" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="20" y1="28" x2="28" y2="20" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="36" y1="44" x2="44" y2="36" stroke="#8a9baa" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+            <span>Replace with data model screenshot</span>
+          </div>
+        </div>
+        <div class="model-name">Sunset Sarsaparilla</div>
+        <div class="model-sub">9 tables · Bridge tables with email matching</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DATA TRANSFORMATION & SQL -->
+<section class="section transform">
+  <div class="section-content">
+    <div class="section-header">Data Transformation &amp; SQL</div>
+    <div class="landscape-container">
+
+      <div class="landscape-panel">
+        <svg viewBox="0 0 1100 280" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#dceef6"/>
+              <stop offset="100%" stop-color="#e8f4f8"/>
+            </linearGradient>
+          </defs>
+          <rect width="1100" height="280" fill="url(#sky1)"/>
+          <!-- clouds -->
+          <g class="cloud-a" opacity="0.85">
+            <ellipse cx="200" cy="60" rx="70" ry="24" fill="#fff"/>
+            <ellipse cx="240" cy="52" rx="50" ry="20" fill="#fff"/>
+          </g>
+          <g class="cloud-b" opacity="0.7">
+            <ellipse cx="650" cy="45" rx="55" ry="18" fill="#fff"/>
+            <ellipse cx="690" cy="38" rx="40" ry="16" fill="#fff"/>
+          </g>
+          <g class="cloud-c" opacity="0.6">
+            <ellipse cx="420" cy="70" rx="45" ry="15" fill="#fff"/>
+          </g>
+          <!-- far hills -->
+          <path d="M0 220 Q150 140 300 190 Q450 130 600 180 Q750 120 900 170 Q1000 140 1100 180 L1100 280 L0 280Z" fill="#8fa862" opacity="0.6"/>
+          <!-- mid hills -->
+          <path d="M0 240 Q100 170 250 210 Q400 150 550 200 Q700 160 850 210 Q950 170 1100 200 L1100 280 L0 280Z" fill="#7a9a3c" opacity="0.8"/>
+          <!-- near hills -->
+          <path d="M0 250 Q80 200 200 230 Q350 190 500 225 Q650 195 800 235 Q900 200 1100 220 L1100 280 L0 280Z" fill="#5d7f1e"/>
+          <!-- figure on hill -->
+          <g transform="translate(195, 218)">
+            <line x1="0" y1="-10" x2="0" y2="-3" stroke="#3a4a2a" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="0" cy="-12" r="2.5" fill="#3a4a2a"/>
+            <line x1="0" y1="-7" x2="-3" y2="-4" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-7" x2="3" y2="-4" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-3" x2="-2" y2="0" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-3" x2="2" y2="0" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <!-- ground line -->
+          <rect x="0" y="268" width="1100" height="12" fill="#4a6b10"/>
+        </svg>
+      </div>
+
+      <div class="landscape-panel">
+        <svg viewBox="0 0 1100 280" preserveAspectRatio="xMidYMid slice">
+          <rect width="1100" height="280" fill="url(#sky1)"/>
+          <g class="cloud-b" opacity="0.75">
+            <ellipse cx="300" cy="55" rx="60" ry="20" fill="#fff"/>
+            <ellipse cx="345" cy="48" rx="42" ry="17" fill="#fff"/>
+          </g>
+          <g class="cloud-c" opacity="0.55">
+            <ellipse cx="750" cy="65" rx="50" ry="17" fill="#fff"/>
+          </g>
+          <g class="cloud-a" opacity="0.65">
+            <ellipse cx="550" cy="40" rx="48" ry="16" fill="#fff"/>
+            <ellipse cx="580" cy="34" rx="35" ry="13" fill="#fff"/>
+          </g>
+          <path d="M0 230 Q200 155 400 200 Q550 140 700 190 Q850 145 1100 185 L1100 280 L0 280Z" fill="#8fa862" opacity="0.6"/>
+          <path d="M0 245 Q150 180 350 215 Q500 165 700 210 Q850 175 1100 205 L1100 280 L0 280Z" fill="#7a9a3c" opacity="0.8"/>
+          <path d="M0 255 Q120 210 280 240 Q450 200 620 235 Q780 205 950 240 Q1050 215 1100 225 L1100 280 L0 280Z" fill="#5d7f1e"/>
+          <g transform="translate(270, 228)">
+            <line x1="0" y1="-10" x2="0" y2="-3" stroke="#3a4a2a" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="0" cy="-12" r="2.5" fill="#3a4a2a"/>
+            <line x1="0" y1="-7" x2="-3" y2="-4" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-7" x2="3" y2="-4" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-3" x2="-2" y2="0" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+            <line x1="0" y1="-3" x2="2" y2="0" stroke="#3a4a2a" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <rect x="0" y="268" width="1100" height="12" fill="#4a6b10"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS REQUEST & USER STORIES -->
+<section class="section stories">
+  <div class="section-content">
+    <div class="section-header">Business Request &amp; User Stories</div>
+    <div class="stories-layout">
+      <div class="stories-quote">
+        My process combines <strong>analytical rigor</strong> with creative insight, utilizing diverse tools to extract meaningful data stories.
+      </div>
+      <div class="stories-table-wrap">
+        <table class="stories-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Role</th>
+              <th>Request</th>
+              <th>Goal</th>
+              <th>Tool</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Regional Director</td>
+              <td>To get a Dashboard Overview of budget completion status for Vice Presidents.</td>
+              <td>Can make sure all budgets are getting completed on time and investigate any Vice Presidents as needed.</td>
+              <td>Power BI Dashboard that allows me to filter by region and vice president</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Vice President</td>
+              <td>To view the budget completion status for all caravans under my supervision.</td>
+              <td>Can specifically identify timeliness of caravans under my supervision to relay updates to RD.</td>
+              <td>Power BI Dashboard that allows me to filter by region and Caravan</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Vice President</td>
+              <td>I need to see all caravans by name and caravan number for financial review.</td>
+              <td>Identify budget issues to insure enough funds are available for successful operations.</td>
+              <td>Power BI Dashboard that allows me to filter by region and Caravan Name</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Regional Director</td>
+              <td>I want to see any future budgets for all caravans as well.</td>
+              <td>To be able to better prepare for future caravans and allocate resources.</td>
+              <td>Power BI Dashboard that allows me to view budgets both historic and future</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ME -->
+<section class="section about" id="about">
+  <div class="section-content">
+    <div class="section-header">About Me</div>
+    <div class="about-layout">
+      <div class="about-left">
+        <div class="headshot-placeholder">
+          <span>TB</span>
+        </div>
+        <div class="about-philosophy">
+          My philosophy is grounded in <strong>data-driven insights</strong> for impactful decisions.
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="video-placeholder">
+          <div class="video-mock">
+            <div class="video-mock-panel">
+              <span class="kw">SELECT</span><br>
+              &nbsp;&nbsp;p.PropertyName,<br>
+              &nbsp;&nbsp;<span class="fn">SUM</span>(w.Revenue) <span class="kw">AS</span> TotalRev<br>
+              <span class="kw">FROM</span> dbo.Watchlist w<br>
+              <span class="kw">JOIN</span> dbo.Property p<br>
+              &nbsp;&nbsp;<span class="kw">ON</span> w.PropID = p.PropID<br>
+              <span class="kw">GROUP BY</span> p.PropertyName<br>
+              <span class="kw">ORDER BY</span> TotalRev <span class="kw">DESC</span>
+            </div>
+            <div class="video-mock-panel" style="font-family:var(--sans);font-size:0.6rem;">
+              <div style="font-weight:600;margin-bottom:6px;color:#fff;font-size:0.65rem;">Revenue at Risk</div>
+              <div style="font-size:1.1rem;font-weight:700;color:#4a8db7;">$2.4M</div>
+              <div style="margin-top:8px;font-size:0.55rem;line-height:1.5;">
+                Harbour Isle &nbsp;$274,500<br>
+                Palm Gardens &nbsp;$196,200<br>
+                Coral Ridge &nbsp;$158,800<br>
+                Bay Vista &nbsp;$142,300<br>
+                Marina Pointe &nbsp;$120,900
+              </div>
+            </div>
+          </div>
+          <div class="play-btn">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <polygon points="6,3 17,10 6,17" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tool-labels">
+          <span class="tool-label">SQL Server</span>
+          <span class="tool-label">Power BI</span>
+          <span class="tool-label">Power Query</span>
+          <span class="tool-label">Python</span>
+        </div>
+        <div class="about-bio">
+          With a background in Data Science, I harness analytics to fuel business growth and drive strategic decisions, blending creativity and technical expertise for compelling narratives.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="section-content">
+    <div class="contact-layout">
+      <div>
+        <div class="contact-title">Contact<br>Information</div>
+        <div class="contact-item">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Fort Lauderdale, FL</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">tevin.aiu@aol.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/your-username</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/your-profile</div>
+        </div>
+      </div>
+      <div class="contact-image">
+        <div class="contact-img-placeholder">Replace with your photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  Built by Tevin Barnes · 2024
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
