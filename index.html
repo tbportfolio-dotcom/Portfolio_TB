@@ -751,7 +751,7 @@ body {
        ,p.PropertyId
        ,p.EntityNumber
        ,p.Year
-    <span class="kw">FROM</span> CMFFIBTPRODDB01.BT_PROD_South.dbo.BudgetToolProperties <span class="kw">AS</span> p
+    <span class="kw">FROM</span> VLTPRODDB01.VT_PROD_Mojave.dbo.BudgetToolProperties <span class="kw">AS</span> p
     <span class="kw">WHERE</span> p.Year >= <span class="fn">YEAR</span>(<span class="fn">GETDATE</span>())
 ) <span class="kw">AS</span> prop
     <span class="kw">ON</span>  prop.EntityNumber = mlp.Entity_Number
@@ -782,7 +782,7 @@ body {
             <span class="kw">THEN</span> <span class="str">'Completed'</span>
         <span class="kw">ELSE</span> <span class="str">'Submitted - '</span> + hx_status.Budget_Status
     <span class="kw">END</span> <span class="kw">AS</span> Budget_Status
-<span class="kw">FROM</span> DataAnalytics.dbo.OrgChart_Budgets <span class="kw">AS</span> mlp
+<span class="kw">FROM</span> VaultAnalytics.dbo.Region_Budgets <span class="kw">AS</span> mlp
     <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> prop   <span class="cm">-- ranked properties</span>
     <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> sub    <span class="cm">-- budget type lookup</span>
     <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> hx_status <span class="cm">-- latest status per entity</span>
