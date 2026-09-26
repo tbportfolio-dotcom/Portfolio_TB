@@ -743,19 +743,19 @@ body {
         </div>
         <pre><span class="kw">LEFT JOIN</span> (
     <span class="kw">SELECT</span>
-        p.BudgetToolPropertiesId
+        p.CaravanRouteId
        ,<span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
-            <span class="kw">PARTITION BY</span> p.EntityNumber, p.Year
-            <span class="kw">ORDER BY</span> p.BudgetToolPropertiesId <span class="kw">DESC</span>
-        ) <span class="kw">AS</span> BudgetID_Rank
-       ,p.PropertyId
-       ,p.EntityNumber
+            <span class="kw">PARTITION BY</span> p.OutpostCode, p.Year
+            <span class="kw">ORDER BY</span> p.CaravanRouteId <span class="kw">DESC</span>
+        ) <span class="kw">AS</span> RouteID_Rank
+       ,p.RouteId
+       ,p.OutpostCode
        ,p.Year
-    <span class="kw">FROM</span> VLTPRODDB01.VT_PROD_Mojave.dbo.BudgetToolProperties <span class="kw">AS</span> p
+    <span class="kw">FROM</span> VLTPRODDB01.VT_PROD_Mojave.dbo.CaravanRoutes <span class="kw">AS</span> p
     <span class="kw">WHERE</span> p.Year >= <span class="fn">YEAR</span>(<span class="fn">GETDATE</span>())
 ) <span class="kw">AS</span> prop
-    <span class="kw">ON</span>  prop.EntityNumber = mlp.Entity_Number
-    <span class="kw">AND</span> prop.BudgetID_Rank = <span class="num">1</span></pre>
+    <span class="kw">ON</span>  prop.OutpostCode = crv.Outpost_Code
+    <span class="kw">AND</span> prop.RouteID_Rank = <span class="num">1</span></pre>
       </div>
 
       <div class="sql-block">
@@ -764,13 +764,13 @@ body {
           <div class="sql-block-tag">CASE · Multi-Source Joins</div>
         </div>
         <pre><span class="kw">SELECT</span>
-    mlp.CamServer
-   ,mlp.GL_Entity_ID
-   ,mlp.Entity_Number
-   ,mlp.Name
-   ,mlp.RP                         <span class="kw">AS</span> Market
-   ,prop.BudgetToolPropertiesId
-   ,prop.BudgetID_Rank
+    crv.RegionServer
+   ,crv.GL_Outpost_ID
+   ,crv.Outpost_Code
+   ,crv.Name
+   ,crv.RP                         <span class="kw">AS</span> Market
+   ,prop.CaravanRouteId
+   ,prop.RouteID_Rank
    ,sub.Budget_Type
    ,hx_status.hist_created_on_date <span class="kw">AS</span> Status_Date
    ,<span class="kw">CASE</span>
@@ -782,11 +782,11 @@ body {
             <span class="kw">THEN</span> <span class="str">'Completed'</span>
         <span class="kw">ELSE</span> <span class="str">'Submitted - '</span> + hx_status.Budget_Status
     <span class="kw">END</span> <span class="kw">AS</span> Budget_Status
-<span class="kw">FROM</span> VaultAnalytics.dbo.Region_Budgets <span class="kw">AS</span> mlp
-    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> prop   <span class="cm">-- ranked properties</span>
-    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> sub    <span class="cm">-- budget type lookup</span>
-    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> hx_status <span class="cm">-- latest status per entity</span>
-<span class="kw">WHERE</span> mlp.Active = <span class="num">1</span></pre>
+<span class="kw">FROM</span> VaultAnalytics.dbo.CaravanBudgets <span class="kw">AS</span> crv
+    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> prop   <span class="cm">-- ranked routes</span>
+    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> sub    <span class="cm">-- budget cycle lookup</span>
+    <span class="kw">LEFT JOIN</span> (...) <span class="kw">AS</span> hx_status <span class="cm">-- latest status per outpost</span>
+<span class="kw">WHERE</span> crv.Active = <span class="num">1</span></pre>
       </div>
 
     </div>
